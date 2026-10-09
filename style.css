@@ -1,0 +1,113 @@
+:root {
+    --orange: #ff5a1f;
+    --ink: #0a0a0a;
+    --field: #f1ecee;
+    --error: #b3261e;
+    --ok: #1b6e3a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    /* Full-page background photo */
+    background: #3a2415 url('assets/background.png') center / cover no-repeat fixed;
+}
+
+/* Frosted glass frame */
+.frame {
+    width: min(1080px, 100%);
+    min-height: 560px;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 6px;
+    padding: 6px;
+    border: 5px solid rgba(255, 255, 255, .45);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, .38);
+    backdrop-filter: blur(6px);
+}
+
+/* Left panel: car photo with a dark, low-opacity cover */
+.panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+    border-radius: 22px;
+    overflow: hidden;
+    color: #fff;
+    background:
+        linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .55)),   /* the "opacity" cover */
+        url('assets/orangecar.jpg') center / cover no-repeat;
+}
+.panel-title { font-size: 1.5rem; font-weight: 500; line-height: 1.2; margin-bottom: 10px; }
+.panel-title span { color: var(--orange); }
+.panel-text { font-size: .72rem; line-height: 1.5; max-width: 300px; }
+
+/* Form side */
+.form-side { display: grid; place-items: center; padding: 24px; }
+.form { width: min(320px, 100%); display: flex; flex-direction: column; }
+.form h1 { font-size: 1.4rem; font-weight: 800; }
+.sub { font-size: .72rem; margin: 4px 0 18px; }
+
+label { font-size: .7rem; margin-top: 10px; margin-bottom: 4px; }
+input[type="text"], input[type="email"], input[type="password"] {
+    height: 38px;
+    padding: 0 12px;
+    font: inherit;
+    font-size: .85rem;
+    background: var(--field);
+    border: 1px solid #555;
+    border-radius: 8px;
+}
+input.invalid { border-color: var(--error); background: #fdeceb; }
+input:focus-visible, button:focus-visible, a:focus-visible, .btn:focus-visible {
+    outline: 3px solid var(--orange);
+    outline-offset: 2px;
+}
+
+.error-msg { font-size: .68rem; color: var(--error); margin-top: 4px; }
+
+.alert { font-size: .75rem; padding: 10px 12px; border-radius: 8px; margin-bottom: 8px; }
+.alert.error   { background: #fdeceb; color: var(--error); border: 1px solid var(--error); }
+.alert.success { background: #e6f4ea; color: var(--ok);    border: 1px solid var(--ok); }
+
+.row { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: .7rem; }
+.row label, .check { display: flex; align-items: center; gap: 6px; margin: 0; }
+.muted { color: var(--ink); text-decoration: none; }
+.muted:hover { text-decoration: underline; }
+
+button, .btn {
+    align-self: center;
+    margin-top: 22px;
+    width: 55%;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    font: inherit;
+    font-size: .8rem;
+    color: #fff;
+    background: #000;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .15s;
+}
+button:hover, .btn:hover { background: #2b2b2b; }
+
+.switch { text-align: center; font-size: .7rem; margin-top: 14px; }
+.switch a { color: var(--orange); font-weight: 500; }
+
+/* Tablet / phone */
+@media (max-width: 800px) {
+    .frame { grid-template-columns: 1fr; }
+    .panel { min-height: 240px; }
+    .panel-text { display: none; }
+}
